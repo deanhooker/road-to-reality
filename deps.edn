@@ -1,0 +1,8 @@
+{:paths ["src" "dev" "notebooks"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        org.mentat/emmy-viewers
+        {:git/url "https://github.com/mentat-collective/emmy-viewers.git"
+         :git/sha "a4305edee1f04ebae1064d64f78502969b435387"}
+        io.github.nextjournal/clerk {:git/sha "d80187013d7b7b96db3d8b114b8d99f687170668"}}
+ :aliases
+ {:nextjournal/clerk {:exec-fn user/build!}}}
