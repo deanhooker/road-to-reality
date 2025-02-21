@@ -1,17 +1,16 @@
 ;; # Notes on Series
-
 ^{:nextjournal.clerk/toc true}
 (ns notebooks.math.1-series
-    (:refer-clojure
-     :exclude [+ - * / zero? compare divide numerator denominator
-               infinite? abs ref partial =])
-    (:require [emmy.clerk :as ec]
-              [emmy.env :as e :refer :all]
-              [emmy.leva :as leva]
-              [emmy.mafs :as mafs]
-              [emmy.mathbox.plot :as p]
-              [emmy.viewer :as ev]
-              [nextjournal.clerk :as clerk]))
+  (:refer-clojure
+   :exclude [+ - * / zero? compare divide numerator denominator
+             infinite? abs ref partial =])
+  (:require [emmy.clerk :as ec]
+            [emmy.env :as e :refer :all]
+            [emmy.leva :as leva]
+            [emmy.mafs :as mafs]
+            [emmy.mathbox.plot :as p]
+            [emmy.viewer :as ev]
+            [nextjournal.clerk :as clerk]))
 
 {::clerk/width :wide}
 
@@ -110,10 +109,72 @@ s = \\sum_{k=0}^{\\infty}a_k = \\lim_{n \\to \\infty}\\sum_{k=0}^{\\infty}a_k = 
 
 ;; ## Testing for convergence or divergence TODO
 
-;; ## Operations TODO
+;; ## Operations
 ;; ### Addition
+;; Two (or more) series can be added by the termwise sum:
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\sum_{k=0}^{\\infty}a_k + \\sum_{k=0}^{\\infty}b_k = \\sum_{k=0}^{\\infty}a_k + b_k
+")
+
+;; In Clojure could write this as
+^{::clerk/visibility {:code :show :result :hide}}
+(defn add-series [s1 s2]
+  (map + s1 s2))
+(render-series (add-series (range) (range)))
+
+;; The series resulting from addition is summable if the series' added
+;; are summable, and is equal to the addition of the two sums of the
+;; added series' sums. Two divergent series can sometimes be added to
+;; create a convergent series (e.g. for divergent s1: s1 + -s1 gives a
+;; series where each term is 0). For the addition of any convergent
+;; and divergent series the result diverges.
+
+;; Series addition, for real and complex numbers, is **associative**,
+;; **commutative** and **invertible**.
+
 ;; ### Multiplication by a scalar
+;; A series can be multiplied by a scalar _c_:
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
+")
+^{::clerk/visibility {:code :show :result :hide}}
+(defn scale-series [c series]
+  (map #(* c %) series))
+(render-series (scale-series 10 (range)))
+
+;; Multiplication by a scalar is **associative**, **commutative**,
+;; **invertible** and **distributes over** series addition.
+
+;; Series addition and scalar multiplication gives the set of convergent
+;; series and the set of series of real numbers the structure of a **real
+;; vector space**. For series and convergent series of complex numbers
+;; we get **complex vector spaces**. These vector spaces are infinite
+;; dimensional.
+
 ;; ### Multiplication by a series
+;; A series can be multiplied by a series, also called the _Cauchy product_.
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+(\\sum_{k=0}^{\\infty}a_k) \\cdot (\\sum_{k=0}^{\\infty}b_k) = \\sum_{k=0}^{\\infty}c_k = \\sum_{k=0}^{\\infty}\\sum_{j=0}^{k}a_{k}b_{k-j}
+")
+^{::clerk/visibility {:code :show :result :hide}}
+(defn sum-of-series [series]
+  (apply + series))
+^{::clerk/visibility {:code :show :result :hide}}
+(defn partial-sum-of-series [series n]
+  (apply + (take n series)))
+^{::clerk/visibility {:code :show :result :hide}}
+(defn multiply-series [s1 s2]
+  (let [f (fn [n]
+            (let [t1 (take n s1)
+                  t2 (reverse (take n s2))]
+              (sum-of-series (map * t1 t2))))]
+    (map (comp f inc) (range))))
+(render-series (multiply-series (range) (range)))
+
+;; TODO finish notes on Cauchy product
 
 ;; ## Types of Series
 ;; ### Numeric Series Examples
