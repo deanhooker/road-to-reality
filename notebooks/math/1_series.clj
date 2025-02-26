@@ -293,6 +293,43 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
 \\sum_{n=1}^{\\infty}\\frac{1}{n!} = \\frac{1}{0!} + \\frac{1}{1!} + \\frac{1}{2!} + ... = e
 ")
 
+;; ### Series of functions
+;; #### Power series
+;; Power series have the form (where _c_ can be 0):
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\sum_{n=0}^{\\infty}a_n(x-c)^n = a_0 + a_1(x-c) + a_2(x-c)^2 + ...
+")
+
+;; Since these new series are a function of _x_ it becomes important
+;; to find the values for _x_ which converge or diverge: the **interval
+;; of convergence**. We often use the (previously mentioned) _ratio test_
+;; for this.
+
+;; ##### Examples
+;; Consider the series
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+1 - \\frac{x}{2} + \\frac{x^2}{4} - \\frac{x^3}{8}+...+\\frac{(-x)^n}{2^n}+...
+")
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\rho_n = |\\frac{(-x)^{n-1}}{2^{n+1}} \\div \\frac{(-x)^n}{2^n}|=|\\frac{x}{2}|
+")
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\rho = |\\frac{x}{2}|
+")
+
+;; the series converges for $\rho<1$ so it converges for $|x|<2$ and
+;; diverges for $|x|>2$. We must also consider the boundary points:
+;; $x=2$ and $x=-2$. When $x=2$ the series is $1-1+1-1+...$ which is
+;; divergent. For $x=-2$ the series is $1+1+1+1...$ which is also divergent.
+;; Thus the interval for convergence is $-2<x<2$.
+
 ;; ## Useful Facts
 ;; 1) The convergence or divergence of a series is not affected by
 ;; multiplying each term by the same constant. Nor is it affected by
