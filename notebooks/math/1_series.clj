@@ -174,7 +174,15 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
     (map (comp f inc) (range))))
 (render-series (multiply-series (range) (range)))
 
-;; TODO finish notes on Cauchy product
+;; Here the convergence of the partial sums is not as simple to establish
+;; as for addition. If both series are **absolutely convergent** then
+;; the resulting series also converges absolutely with a sum equal to
+;; the product of the two sums of the multiplied series:
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\lim_{n \\to \\infty}s_{c,n} = (\\lim_{n \\to \\infty}s_{a,n}) \\cdot (\\lim_{n \\to \\infty}s_{b,n})
+")
 
 ;; ## Types of Series
 ;; ### Numeric Series Examples
