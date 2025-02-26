@@ -107,7 +107,57 @@ s = \\sum_{k=0}^{\\infty}a_k = \\lim_{n \\to \\infty}\\sum_{k=0}^{\\infty}a_k = 
 ;; The difference between the sum and the $n$th partial sum is known as
 ;; the $n$th truncation error: $s-s_n = \sum_{k=n+1}^{\infty}a_k$.
 
-;; ## Testing for convergence or divergence TODO
+;; ## Testing for convergence or divergence
+;; A series is convergent if $\lim_{n\to\infty}S_n = S$, i.e. if the
+;; partial sums $S_n$ of a series tend to a limit $S$.
+
+;; ### Preliminary test
+;; If the terms of an infinite series do not tend towards zero then the
+;; series diverges, otherwise we must test further.
+
+;; ### Comparison test
+;; We can compare the series we are testing to a series we know converges
+;; or diverges. For our series $a_1+a_2+a_3+...$ we can compare with known
+;; series $m_1+m_2+m_3+...$ (we can ignore the first _n_ terms).
+
+;; If the _m_ series **converges** then the _a_ series is convergent if
+;; $|a_n| \le m_n$.
+
+;; Similarly if the _m_ series **diverges** then the _a_ series is divergent
+;; if $|a_n| \ge m_n$.
+
+;; ### Integral test
+;; If terms are decreasing, $0<a_{n+1}<a_n$, then \sum^{\infty}a_n$
+;; converges if $\int^{\infty}a_n dn$ is finite and diverges if the
+;; integral is infinite.
+
+;; ### Ratio test
+;; Let $\rho_n = |\frac{a_{n+1}}{a_n}|$ and $\rho = \lim_{n\to\infty}\rho_n$.
+;; Then
+
+;; The series converges if $\rho < 1$
+;;
+;; Use a different test if $\rho = 1$
+;;
+;; The series diverges if $\rho > 1$
+
+;; ### Special comparison test
+;; This test has two parts:
+;; 1) If $\sum_{n=1}^\infty b_n$ is a convergent series of positive terms
+;; and $a_n\ge0$ and $\frac{a_n}{b_n}$ tends to a finite limit then
+;; $\sum_{n=1}^\infty a_n$ converges.
+;; 2) If $\sum_{n=1}^\infty d_n$ is a divergent series of positive terms
+;; and $a_n\ge0$ and $\frac{a_n}{d_n}$ tends to a limit greater than 0
+;; (or $+\infty$) then $\sum_{n=1}^\infty a_n$ diverges.
+
+;; ### Testing alternating series
+;; An alternating series which is **absolutely convergent** is also
+;; convergent. Otherwise we must test further.
+;; An alternating series converges if the absolute value of the terms
+;; decreases steadily to zero.
+
+;; If an alternating series converges, but is not **absolutely convergent**
+;; then it is called **conditionally convergent**.
 
 ;; ## Operations
 ;; ### Addition
@@ -242,3 +292,16 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
 (clerk/tex "
 \\sum_{n=1}^{\\infty}\\frac{1}{n!} = \\frac{1}{0!} + \\frac{1}{1!} + \\frac{1}{2!} + ... = e
 ")
+
+;; ## Useful Facts
+;; 1) The convergence or divergence of a series is not affected by
+;; multiplying each term by the same constant. Nor is it affected by
+;; changing a finite number of terms (e.g. removing the first n terms).
+
+;; 2) Two convergent series may be added or subtracted term by term.
+;; The resulting series is convergent and its sum is the addition or
+;; subtraction of the sums of the original series.
+
+;; 3) The terms of an **absolutely convergent series** may be arranged
+;; in any order without affecting the convergence or the sum. This is
+;; **not true** of **conditionally convergent** series.
