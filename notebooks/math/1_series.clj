@@ -330,6 +330,91 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
 ;; divergent. For $x=-2$ the series is $1+1+1+1...$ which is also divergent.
 ;; Thus the interval for convergence is $-2<x<2$.
 
+;; #### Thereoms about power series
+
+;; Within the interval of convergence a power series with converge on
+;; some value which depends on $x$, i.e. a function of $x$.
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+S(x) = \\sum_{n=0}^{\\infty} a_nx^n
+")
+
+;; We can say that a power series (within the interval of convergence)
+;; converges to the function $S(x)$ or that function $S(x)$ is represented
+;; by the series.
+
+;; 1) A power series can be differentiated or integrated term by term;
+;; the resulting series converges to the derivative or integral of the
+;; function represented by the series within the same interval of
+;; convergence (not necessarily at the endpoints though).
+
+;; 2) Two power series may be added, subtracted or multiplied; the resultant
+;; series converges at least in the common interval of convergence. Two
+;; series can be divided provided that the denominator is not 0 at
+;; $x=0$, or if it is then the zero is canceled by the numerator e.g.
+;; $\frac{sin(x)}{x}$. The resulting series has **some** interval of
+;; convergence but will have to be calculated (e.g. with the ratio test).
+
+;; 3) One series may be substituted for another provided that the values
+;; substituted are in the interval of convergence.
+
+;; 4) The power series of a function is unique, i.e. there is just one
+;; power series of the from $\sum_{n=0}^{\infty}a_nx^n$ which converges
+;; to a given function.
+
+;; #### Expanding functions in power series
+
+;; We can obtain a power series representation by assuming there is a
+;; series of the form $a_0 + a_1x + a_2x^2 + a_3x^3 + ...$ for a function.
+;; Repeatedly taking the derivative of each side we can find the values
+;; of the coefficients.
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+f(x) = sin(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + ... \\\\
+f'(x) = cos(x) = a_1 + 2a_2x + 3a_3x^2 + 4a_4x^3 + ... \\\\
+f''(x) = -sin(x) = 2a_2 + 3\\cdot2a_3x + 4\\cdot3a_4x^2 + ... \\\\
+f'''(x) = -cos(x) = 3\\cdot2a_3 + 4\\cdot3\\cdot2a_4x + 5\\cdot4\\cdot3x^2 + ...
+")
+
+;; At each stage we use $x=0$ which gives 0 for each x term:
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+f(0) = sin(0) = 0 = a_0 \\\\
+f'(0) = cos(0) = 1 = a_1 \\\\
+f''(0) = -sin(0) = 0 = 2a_2 \\\\
+f'''(0) = -cos(0) = -1 = 3\\cdot2a_3
+")
+
+;; Therefore:
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+sin(x) = 1 - \\frac{x^3}{3!} + \\frac{x^5}{5!} - ...
+")
+
+;; Series found this way are called _Maclaurin series_ or _Taylor series
+;; about the origin_.
+
+;; #### Useful power series to remember
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\begin{alignedat}{2}
+sin(x) = 1 - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\frac{x^7}{7!} + ...
+& \\qquad \\text{all } x \\\\
+cos(x) = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\frac{x^6}{6!} + ...
+& \\qquad \\text{all } x \\\\
+e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\frac{x^4}{4!} + ...
+& \\qquad \\text{all } x \\\\
+ln(1+x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\frac{x^4}{4} + ...
+& \\qquad -1 < x \\le 1 \\\\
+(1+x)^p = x + px + \\frac{p(p-1)}{2!}x^2 + \\frac{p(p-1)(p-2)}{3!}x^3 + ...
+& \\qquad |x| < 1 \\\\
+\\end{alignedat}
+")
+
 ;; ## Useful Facts
 ;; 1) The convergence or divergence of a series is not affected by
 ;; multiplying each term by the same constant. Nor is it affected by
