@@ -234,9 +234,8 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
 \\lim_{n \\to \\infty}s_{c,n} = (\\lim_{n \\to \\infty}s_{a,n}) \\cdot (\\lim_{n \\to \\infty}s_{b,n})
 ")
 
-;; ## Types of Series
-;; ### Numeric Series Examples
-;; #### Geometric series
+;; ## Numeric Series
+;; ### Geometric series
 ;; Each successive term is formed by multiplying the previous by a fixed
 ;; number (called the common ratio).
 
@@ -254,14 +253,14 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
 ;; ratio $r$, the series is convergent if and only if $|r|<1$, in which
 ;; case it converges to $\frac{a}{1-r}$.
 
-;; #### Harmonic series
+;; ### Harmonic series
 ;; The harmonic series is the following series and is divergent.
 ^{::clerk/visibility {:code :hide :result :show}}
 (clerk/tex "
 1 + \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{4} + ... = \\sum_{n=0}^{\\infty}\\frac{1}{n}
 ")
 
-;; #### Alternating series
+;; ### Alternating series
 ;; Alternating series by definition have terms with alternating signs.
 ;; For example the alternating harmonic series:
 ^{::clerk/visibility {:code :hide :result :show}}
@@ -274,27 +273,27 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
 -1 + \\frac{1}{3} - \\frac{1}{5} + \\frac{1}{7} - ... = \\sum_{n=1}^{\\infty}\\frac{(-1)^n}{2n-1} = \\frac{\\pi}{4}
 ")
 
-;; #### Pi
+;; ### Pi
 ;; An example of a series representation of $\pi$:
 ^{::clerk/visibility {:code :hide :result :show}}
 (clerk/tex "
 \\sum_{n=1}^{\\infty}\\frac{1}{n^2} = \\frac{1}{1^2} + \\frac{1}{2^2} + \\frac{1}{3^2} + ... = \\frac{\\pi^2}{6}
 ")
 
-;; #### Natural logarithm of 2
+;; ### Natural logarithm of 2
 ^{::clerk/visibility {:code :hide :result :show}}
 (clerk/tex "
 \\sum_{n=1}^{\\infty}\\frac{(-1)^{n+1}}{n} =  \\ln(2)
 ")
 
-;; #### Natual logarithm base _e_
+;; ### Natual logarithm base _e_
 ^{::clerk/visibility {:code :hide :result :show}}
 (clerk/tex "
 \\sum_{n=1}^{\\infty}\\frac{1}{n!} = \\frac{1}{0!} + \\frac{1}{1!} + \\frac{1}{2!} + ... = e
 ")
 
-;; ### Series of functions
-;; #### Power series
+;; ## Series of functions
+;; ### Power series
 ;; Power series have the form (where _c_ can be 0):
 
 ^{::clerk/visibility {:code :hide :result :show}}
@@ -307,7 +306,7 @@ c\\sum_{k=0}^{\\infty}a_k = \\sum_{k=0}^{\\infty}ca_k
 ;; of convergence**. We often use the (previously mentioned) _ratio test_
 ;; for this.
 
-;; ##### Examples
+;; #### Examples
 ;; Consider the series
 
 ^{::clerk/visibility {:code :hide :result :show}}
@@ -401,19 +400,93 @@ sin(x) = 1 - \\frac{x^3}{3!} + \\frac{x^5}{5!} - ...
 ;; #### Useful power series to remember
 ^{::clerk/visibility {:code :hide :result :show}}
 (clerk/tex "
-\\begin{alignedat}{2}
-sin(x) = 1 - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\frac{x^7}{7!} + ...
+\\begin{alignedat}{3}
+sin(x) = & 1 - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\frac{x^7}{7!} + ...
 & \\qquad \\text{all } x \\\\
-cos(x) = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\frac{x^6}{6!} + ...
+cos(x) = & 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\frac{x^6}{6!} + ...
 & \\qquad \\text{all } x \\\\
-e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\frac{x^4}{4!} + ...
+e^x = & 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\frac{x^4}{4!} + ...
 & \\qquad \\text{all } x \\\\
-ln(1+x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\frac{x^4}{4} + ...
+ln(1+x) = & x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\frac{x^4}{4} + ...
 & \\qquad -1 < x \\le 1 \\\\
-(1+x)^p = x + px + \\frac{p(p-1)}{2!}x^2 + \\frac{p(p-1)(p-2)}{3!}x^3 + ...
+(1+x)^p = & x + px + \\frac{p(p-1)}{2!}x^2 + \\frac{p(p-1)(p-2)}{3!}x^3 + ...
 & \\qquad |x| < 1 \\\\
 \\end{alignedat}
 ")
+
+;; #### Deriving series for more complicated functions
+;; Using power series for functions we already know we can derive the
+;; series for more complex functions. E.g. $e^x \cdot cos(x)$:
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\begin{alignedat}{2}
+e^x \\cdot cos(x) & = (1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}...) \\cdot
+(1-\\frac{x^2}{2!}+\\frac{x^4}{4!}...) \\\\
+& = (1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\frac{4^3}{4!} ...) \\\\
+& \\quad +  (0 + 0 - \\frac{x^2}{2!} - \\frac{x^3}{2!} - \\frac{x^4}{4!} ...) \\\\
+& \\quad +  (0 + 0 + 0 + 0 + \\frac{x^4}{4!} ...) \\\\
+& = 1 + x - \\frac{x^3}{3} - \\frac{x^4}{6} ...
+
+\\end{alignedat}
+")
+
+;; ## Practical Uses
+;; ### Numerical Computation
+;; It can be easier to use series for problems which cannot be easily
+;; solved with a calculator.
+
+;; #### Example 1
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\begin{alignedat}{2}
+ln(\\sqrt{\\frac{1+x}{1-x}}) - tan(x) \\biggr\\rvert_{x=0.0015} & =
+(x + \\frac{x^3}{3} + \\frac{x^5}{5}  ...) -
+(x + \\frac{x^3}{3} + \\frac{2x^5}{15}  ...)
+ \\biggr\\rvert_{x=0.0015} \\\\
+& = \\frac{x^5}{15} + \\frac{4x^7}{45}  \\biggr\\rvert_{x=0.0015} \\\\
+& = 5.06\\cdot10^{-16}
+\\end{alignedat}
+")
+;; with an error of the order of $x^7$ or $10^{-21}$. Both numbers being
+;; subtracted are approximately 0.0015 and do not differ until the 16th
+;; decimal place.
+
+;; #### TODO Example 2
+
+;; ### Summing Series
+;; If you recognize a numerical series as the series for a particular
+;; function at a particular value:
+
+;; #### Example
+;; Find the sum $1-\frac{1}{2} + \frac{1}{3} - \frac{1}{4}...$.
+;;
+;; We are familiar with $ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4}...$.
+;; If we put $x=1$ then we get:
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+ln(2) = 1 - \\frac{1}{2} + \\frac{1}{3} - \\frac{1}{4} ...
+")
+
+;; ### Evaluation of Definite Integrals
+;; Many integrals found in applied problems cannot be evaluated in terms
+;; of elementary functions. One way to find the definite integral when
+;; the indefinite cannot be found is to expand the integral in a power
+;; series and integrate term-by-term.
+
+;; #### Example
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\begin{alignedat}{2}
+\\int^1_0 sin(x^2)dx & = \\int^1_0 (x^2 - \\frac{x^6}{3!} + \\frac{x^10}{5!}...) dx\\\\
+& = \\frac{1}{3} - \\frac{1}{7\\cdot3!} + \\frac{1}{11\\cdot5!}...  \\biggr\\rvert_0^1 \\\\
+& = 0.33333 - 0.02381 + 0.00076...
+& \\approx 0.3102
+\\end{alignedat}
+")
+;; with an error $<\frac{1}{15\cdot7!}$ or about $10^{-5}$.
+
+;; ### Evaluation of Indeterminate Forms TODO
 
 ;; ## Useful Facts
 ;; 1) The convergence or divergence of a series is not affected by
