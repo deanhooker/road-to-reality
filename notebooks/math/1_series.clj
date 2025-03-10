@@ -371,20 +371,24 @@ S(x) = \\sum_{n=0}^{\\infty} a_nx^n
 
 ^{::clerk/visibility {:code :hide :result :show}}
 (clerk/tex "
-f(x) = sin(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + ... \\\\
-f'(x) = cos(x) = a_1 + 2a_2x + 3a_3x^2 + 4a_4x^3 + ... \\\\
-f''(x) = -sin(x) = 2a_2 + 3\\cdot2a_3x + 4\\cdot3a_4x^2 + ... \\\\
-f'''(x) = -cos(x) = 3\\cdot2a_3 + 4\\cdot3\\cdot2a_4x + 5\\cdot4\\cdot3x^2 + ...
+\\begin{alignedat}{2}
+f(x) &= sin(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + ... \\\\
+f'(x) &= cos(x) = a_1 + 2a_2x + 3a_3x^2 + 4a_4x^3 + ... \\\\
+f''(x) &= -sin(x) = 2a_2 + 3\\cdot2a_3x + 4\\cdot3a_4x^2 + ... \\\\
+f'''(x) &= -cos(x) = 3\\cdot2a_3 + 4\\cdot3\\cdot2a_4x + 5\\cdot4\\cdot3x^2 + ...
+\\end{alignedat}
 ")
 
 ;; At each stage we use $x=0$ which gives 0 for each x term:
 
 ^{::clerk/visibility {:code :hide :result :show}}
 (clerk/tex "
-f(0) = sin(0) = 0 = a_0 \\\\
-f'(0) = cos(0) = 1 = a_1 \\\\
-f''(0) = -sin(0) = 0 = 2a_2 \\\\
-f'''(0) = -cos(0) = -1 = 3\\cdot2a_3
+\\begin{alignedat}{2}
+f(0) &= sin(0) = 0 = a_0 \\\\
+f'(0) &= cos(0) = 1 = a_1 \\\\
+f''(0) &= -sin(0) = 0 = 2a_2 \\\\
+f'''(0) &= -cos(0) = -1 = 3\\cdot2a_3
+\\end{alignedat}
 ")
 
 ;; Therefore:
