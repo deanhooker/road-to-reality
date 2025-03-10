@@ -452,7 +452,28 @@ ln(\\sqrt{\\frac{1+x}{1-x}}) - tan(x) \\biggr\\rvert_{x=0.0015} & =
 ;; subtracted are approximately 0.0015 and do not differ until the 16th
 ;; decimal place.
 
-;; #### TODO Example 2
+;; #### Example 2
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\frac{d^4}{dx^4}(\\frac{1}{x}sin(x^2))\\biggr\\rvert_{x=0.1}
+")
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\begin{alignedat}{2}
+\\frac{1}{x}sin(x^2) & = \\frac{1}{x}(x^2-\\frac{x^6}{3!}+
+\\frac{x^10}{5!})\\biggr\\rvert_{x=0.1} \\\\
+& = x-\\frac{x^5}{3!}+\\frac{x^9}{5!}\\biggr\\rvert_{x=0.1} \\\\
+\\end{alignedat}
+")
+
+;; Differentiate x4:
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+-\\frac{5\\cdot4\\cdot3\\cdot2x}{3!}+\\frac{9\\cdot8\\cdot7\\cdot6x^5}{5!}
+\\biggr\\rvert_{x=0.1} = -2+0.00025
+")
+;; or $\approx-2$ with an error of order $10^{-4}$.
+
 
 ;; ### Summing Series
 ;; If you recognize a numerical series as the series for a particular
@@ -486,7 +507,36 @@ ln(2) = 1 - \\frac{1}{2} + \\frac{1}{3} - \\frac{1}{4} ...
 ")
 ;; with an error $<\frac{1}{15\cdot7!}$ or about $10^{-5}$.
 
-;; ### Evaluation of Indeterminate Forms TODO
+;; ### Evaluation of Indeterminate Forms
+;; Suppose we want to find $\lim_{x \to\infty} \frac{1-e^x}{x}$.
+;; If we try to substitute $x=0$ we get $\frac{0}{0}$. Expressions that
+;; lead to such meaningless results are called _indeterminate forms_.
+;; Many times they can be evaluated using series.
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\begin{alignedat}{2}
+\\lim_{x\\to\\infty}\\frac{1-e^x}{x} & = \\lim_{x\\to\\infty}
+(\\frac{1-(1+x+\\frac{x^2}{2!}+...)}{x})\\\\
+& = \\lim_{x\\to\\infty}(-1-\\frac{x}{2!}-\\frac{x^2}{3!}...)\\\\
+& = -1
+\\end{alignedat}
+")
+
+;; Examples of indeterminate forms are: $\frac{0}{0}$, $\frac{\infty}{\infty}$
+;; and $0\cdot\infty$. For a given problem you need to decide between
+;; differentiating and using L'Hôpital's rule (e.g. when we do not know
+;; the series expansion for either $f$ or $\phi$):
+
+^{::clerk/visibility {:code :hide :result :show}}
+(clerk/tex "
+\\lim_{x\\to a}\\frac{f(x)}{\\phi(x)} = \\lim_{x\\to a}\\frac{f'(x)}{\\phi'(x)}
+")
+
+;; or using series (for example when the derivatives are too complicated.
+;;
+;; Series are most useful for the $\frac{0}{0}$ form with $\lim_{x\to0}$
+;; since the series collapses to the constant term.
 
 ;; ## Useful Facts
 ;; 1) The convergence or divergence of a series is not affected by
