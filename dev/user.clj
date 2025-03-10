@@ -2,7 +2,7 @@
   (:require [emmy.clerk :as ec]))
 
 (def index
-  "notebooks/math/1_series.clj")
+  "notebooks/math/2_complex_numbers.clj")
 
 (def defaults
   {;; NOTE by default, your project's first notebook is registered as its index;
