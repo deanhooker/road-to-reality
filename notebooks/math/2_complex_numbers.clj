@@ -42,3 +42,14 @@
 ;; - $y =$ imaginary part
 ;; - $r = |z| = \sqrt{x^2+y^2}$
 ;; - $\theta =$ angle / phase / argument / amplitude
+
+;; ### Angle
+;; The angle of a complex number can have integer $n$ multiple of $2\pi$
+;; added and it will result in the same number, thus there are an infinite
+;; number of angles per complex number.
+
+;; ### Complex Conjugate
+;; The complex number $x-iy$ obtained by changing the sign of $i$ in
+;; $z=x+iy$ is called the **complex conjugate** of $z$.
+
+;; TODO: Show graphical representation of complex conjugate.
